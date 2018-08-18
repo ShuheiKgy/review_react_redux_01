@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 export function todos (state = {list: []}, action) {
-    switch(action) {
+    switch(action.type) {
         case "ADD_TO_DO":
             state.list = state.list.concat(action.todo);
             return Object.assign({}, state);
