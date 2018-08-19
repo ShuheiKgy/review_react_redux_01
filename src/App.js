@@ -21,7 +21,10 @@ class App extends Component {
         <ul>
           {this.props.todos.map(todo => {
             return (
-              <li key={todo}>{todo}</li>
+              <li key={todo}>
+                <span>{todo}</span>
+                <button onClick={() => this.props.dispatch(removeToDo(todo))}>削除</button>
+              </li>
             );
           })}
         </ul>
