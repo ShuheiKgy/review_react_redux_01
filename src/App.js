@@ -12,6 +12,8 @@ class App extends Component {
     };
   }
   render() {
+    const { onAddToDo, onRemoveToDo } = this.props;
+    const { input } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -23,13 +25,13 @@ class App extends Component {
             return (
               <li key={todo}>
                 <span>{todo}</span>
-                <button onClick={() => this.props.onRemoveToDo(todo)}>削除</button>
+                <button onClick={() => onRemoveToDo(todo)}>削除</button>
               </li>
             );
           })}
         </ul>
         <input type="text" onChange={e => this.setState({input: e.target.value})}></input>
-        <button onClick={() => this.props.onAddToDo((this.state.input))}>追加</button>
+        <button onClick={() => onAddToDo((input))}>追加</button>
       </div>
     );
   }
