@@ -23,13 +23,13 @@ class App extends Component {
             return (
               <li key={todo}>
                 <span>{todo}</span>
-                <button onClick={() => this.props.dispatch(removeToDo(todo))}>削除</button>
+                <button onClick={() => this.props.onRemoveToDo(todo)}>削除</button>
               </li>
             );
           })}
         </ul>
         <input type="text" onChange={e => this.setState({input: e.target.value})}></input>
-        <button onClick={() => this.props.dispatch(addToDo(this.state.input))}>追加</button>
+        <button onClick={() => this.props.onAddToDo((this.state.input))}>追加</button>
       </div>
     );
   }
@@ -41,4 +41,15 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddToDo(todo) {
+      dispatch(addToDo(todo))
+    },
+    onRemoveToDo(todo) {
+      dispatch(removeToDo(todo))
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
